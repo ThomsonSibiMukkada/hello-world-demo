@@ -1,0 +1,19 @@
+{{- range $container := .Values.containers }}
+apiVersion: v1
+kind: Service
+metadata:
+  name: {{ $.Values.image.name }}-{{tpl $container.depRegion $}}
+  labels:
+    svc-name: {{ tpl $container.name $ }}
+spec:
+  type: ClusterIP
+  ports:
+  - port: {{ $.Values.service.port }}
+    targetPort: {{ $.Values.service.targetPort }}
+    protocol: TCP
+    name: {{ tpl $container.name $}}
+  selector:
+    svc-name: {{ tpl $container.name $ }}
+
+
+{{- end }}

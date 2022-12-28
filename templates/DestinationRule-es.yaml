@@ -1,0 +1,10 @@
+apiVersion: networking.istio.io/v1alpha3
+kind: DestinationRule
+metadata:
+  name: hello-world-es
+spec:
+  host: hello-world-es.1-helm-debug.svc.cluster.local
+  subsets:
+  - name: v3
+    labels:
+      version: v3

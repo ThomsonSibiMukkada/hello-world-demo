@@ -1,0 +1,24 @@
+{{- range $container := .Values.containers }}
+
+kind: ConfigMap
+apiVersion: v1
+{{- $appdepRegion :=  lower $container.depRegion }}
+metadata:
+  name: {{ $.Values.image.name }}-{{tpl $container.depRegion $}}
+data:
+  # Configuration values can be set as key-value properties
+  {{ if eq $appdepRegion "de"}}
+  de: Friend
+
+  {{- else if eq $appdepRegion "es"}}
+  es: Amigo
+
+  {{- else if eq $appdepRegion "fr"}}
+  fr: Ami
+
+  {{ else }}
+  en: World
+  
+  {{ end }}
+
+{{ end }}

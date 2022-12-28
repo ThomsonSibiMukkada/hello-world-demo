@@ -1,0 +1,24 @@
+image:
+  name: hello-world
+  tag: latest
+  registry: adamgolab
+
+service:
+  port: 8000
+  targetPort: 80
+
+deployment:
+  replicas: 1
+  default: en
+
+containers:
+   - name: "hello-world-de"
+     depRegion: de
+     env:
+
+   - name: "hello-world-fr"
+     depRegion: fr
+     env:  
+   - name: "hello-world-es"
+     depRegion: es
+     env:  
